@@ -1,4 +1,4 @@
-const API_URL='https://script.google.com/macros/s/AKfycbytsLWncsMU8G__2izyJumeaszT2lZdLem5PnoerswVco4yA4WVT7GO2jAymVJaHonT4A/exec';
+const API_URL='https://script.google.com/macros/s/AKfycbw_qvloUY5sHgDqI4w_oH3P7ZGeba5iGD37UDK0lChBOETSd3iYfjbrwNrdZ4SDdZUplg/exec';
 
 const kategoriData={
 Pengeluaran:['🍔 Makanan','🛒 Belanja','🚗 Transportasi','💡 Tagihan'],
