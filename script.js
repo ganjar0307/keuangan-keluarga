@@ -1,4 +1,4 @@
-const API_URL='PASTE_WEBAPP_URL_HERE';
+const API_URL='https://script.google.com/macros/s/AKfycbytsLWncsMU8G__2izyJumeaszT2lZdLem5PnoerswVco4yA4WVT7GO2jAymVJaHonT4A/exec';
 
 const kategoriData={
 Pengeluaran:['🍔 Makanan','🛒 Belanja','🚗 Transportasi','💡 Tagihan'],
