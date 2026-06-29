@@ -1,96 +1,116 @@
 const API_URL = 'https://script.google.com/macros/s/AKfycbwnIpfMygNCpaYOQJMnfIGUjUtuba0WLNN6iCmKbvj3Sc_vSOtAMV7ad2god2ThlcU9lQ/exec';
 
-const kategoriData = {
+// ==========================
+// DATA KATEGORI
+// ==========================
 
-    Pengeluaran: [
+const kategoriData={
 
-        '🍔 Makanan',
-        '🛒 Belanja',
-        '🏠 Rumah Tangga',
-        '🚗 Transportasi',
-        '💡 Tagihan',
-        '🎓 Pendidikan',
-        '💊 Kesehatan',
-        '✨ Skincare',
-        '🎮 Hiburan',
-        '💼 Operasional Kerja',
-        '👨‍👩‍👧 Orang Tua',
-        '💸 Hutang',
-        '💰 Saving',
-        '📌 Lainnya'
+Pengeluaran:[
 
-    ],
+'🍔 Makanan',
+'🛒 Belanja',
+'🏠 Rumah Tangga',
+'🚗 Transportasi',
+'💡 Tagihan',
+'🎓 Pendidikan',
+'💊 Kesehatan',
+'✨ Skincare',
+'🎮 Hiburan',
+'💼 Operasional Kerja',
+'👨‍👩‍👧 Orang Tua',
+'💸 Hutang',
+'💰 Saving',
+'📌 Lainnya'
 
-    Pemasukan: [
+],
 
-        '💼 Gaji',
-        '💰 Bonus',
-        '💵 Usaha',
-        '💳 Transfer',
-        '📥 Piutang',
-        '💵 Pengembalian Hutang',
-        '📌 Lainnya'
+Pemasukan:[
 
-    ]
+'💼 Gaji',
+'💰 Bonus',
+'💵 Usaha',
+'💳 Transfer',
+'📥 Piutang',
+'💵 Pengembalian Hutang',
+'📌 Lainnya'
+
+]
 
 };
 
 
-// ===================
+// ==========================
 // FORMAT RUPIAH
-// ===================
+// ==========================
 
 function rupiah(angka){
 
-    return "Rp " +
-    Number(angka)
-    .toLocaleString('id-ID');
+return "Rp "+
+
+Number(angka)
+
+.toLocaleString(
+'id-ID'
+);
 
 }
 
 
-// ===================
-// TOAST NOTIFIKASI
-// ===================
+
+// ==========================
+// TOAST
+// ==========================
 
 function toast(pesan){
 
-    let t =
-    document.getElementById(
-    'toast'
-    );
+let t=
+document.getElementById(
+'toast'
+);
 
-    t.innerHTML=pesan;
+t.innerHTML=
+pesan;
 
-    t.style.display='block';
+t.style.display=
+'block';
 
-    setTimeout(()=>{
+setTimeout(()=>{
 
-        t.style.display='none';
+t.style.display=
+'none';
 
-    },2000);
+},2000);
 
 }
 
 
-// ===================
+
+// ==========================
 // UPDATE KATEGORI
-// ===================
+// ==========================
 
 function kategoriUpdate(){
 
-    kategori.innerHTML='';
+kategori.innerHTML='';
 
-    kategoriData[
-    jenis.value
-    ]
+kategoriData[
 
-    .forEach(item=>{
+jenis.value
 
-        kategori.innerHTML +=
-        `<option>${item}</option>`;
+]
 
-    });
+.forEach(item=>{
+
+kategori.innerHTML+=
+
+`<option>
+
+${item}
+
+</option>`;
+
+});
 
 }
 
@@ -98,231 +118,334 @@ kategoriUpdate();
 
 
 
-// ===================
+
+// ==========================
 // LOGIN
-// ===================
+// ==========================
 
 function login(){
 
-    let userInput =
-    username.value.trim();
+let userInput=
 
-    let passInput =
-    password.value.trim();
+username.value.trim();
 
-    if(
-        userInput=='' ||
-        passInput==''
-    ){
+let passInput=
 
-        toast(
-        '⚠ Isi username dan password'
-        );
+password.value.trim();
 
-        return;
 
-    }
+if(
 
-    fetch(
+userInput=='' ||
 
-        API_URL +
-        '?action=login' +
-        '&username=' +
-        encodeURIComponent(
-        userInput
-        ) +
+passInput==''
 
-        '&password=' +
+){
 
-        encodeURIComponent(
-        passInput
-        )
+toast(
 
-    )
+'⚠ Isi username dan password'
 
-    .then(response=>response.json())
+);
 
-    .then(data=>{
-
-        if(data.success){
-
-            localStorage.setItem(
-            'user',
-            userInput
-            );
-
-            showApp();
-
-            toast(
-            '✓ Login berhasil'
-            );
-
-        }
-
-        else{
-
-            toast(
-            '❌ Login gagal'
-            );
-
-        }
-
-    })
-
-    .catch(error=>{
-
-        console.log(error);
-
-        toast(
-        '❌ Server tidak merespon'
-        );
-
-    });
+return;
 
 }
 
 
-
-// ===================
-// TAMPILKAN APP
-// ===================
-
-function showApp(){
-
-    let user =
-    localStorage.getItem(
-    'user'
-    );
-
-    if(!user){
-
-        return;
-
-    }
-
-    loginBox.style.display=
-    'none';
-
-    app.style.display=
-    'block';
-
-    welcome.innerHTML=
-    'Halo, ' +
-    user +
-    ' 👋';
-
-    loadData();
-
-}
-
-
-
-// ===================
-// SIMPAN TRANSAKSI
-// ===================
-
-function simpan(){
-
-    saveBtn.innerHTML=
-    'Menyimpan...';
-
-    saveBtn.disabled=true;
-
-    fetch(API_URL,{
-
-        method:'POST',
-
-        body:JSON.stringify({
-
-            tanggal:
-            tanggal.value,
-
-            user:
-            localStorage.user,
-
-            jenis:
-            jenis.value,
-
-            kategori:
-            kategori.value,
-
-            keterangan:
-            keterangan.value,
-
-            nominal:
-            nominal.value
-
-        })
-
-    })
-
-    .then(response=>
-    response.json())
-
-    .then(data=>{
-
-        saveBtn.innerHTML=
-        'Simpan';
-
-        saveBtn.disabled=
-        false;
-
-        toast(
-        '✓ Data berhasil disimpan'
-        );
-
-        // kosongkan form
-
-        tanggal.value='';
-
-        keterangan.value='';
-
-        nominal.value='';
-
-        jenis.selectedIndex=0;
-
-        kategoriUpdate();
-
-        loadData();
-
-    })
-
-    .catch(error=>{
-
-        console.log(error);
-
-        saveBtn.innerHTML=
-        'Simpan';
-
-        saveBtn.disabled=
-        false;
-
-        toast(
-        '❌ Gagal menyimpan'
-        );
-
-    });
-
-}
-
-
-
-// ===================
-// LOAD DATA
-// ===================
-
-function loadData(){
 
 fetch(
+
 API_URL+
-'?action=get'
+
+'?action=login'+
+
+'&username='+
+
+encodeURIComponent(
+
+userInput
+
+)+
+
+'&password='+
+
+encodeURIComponent(
+
+passInput
+
+)
+
 )
 
 .then(
+
 response=>response.json()
+
 )
 
 .then(data=>{
+
+if(
+
+data.success
+
+){
+
+localStorage.setItem(
+
+'user',
+
+userInput
+
+);
+
+showApp();
+
+toast(
+
+'✓ Login berhasil'
+
+);
+
+}
+
+else{
+
+toast(
+
+'❌ Login gagal'
+
+);
+
+}
+
+})
+
+.catch(error=>{
+
+console.log(error);
+
+toast(
+
+'❌ Server error'
+
+);
+
+});
+
+}
+
+
+
+// ==========================
+// SHOW APP
+// ==========================
+
+function showApp(){
+
+let user=
+
+localStorage.getItem(
+
+'user'
+
+);
+
+
+if(
+
+!user
+
+){
+
+return;
+
+}
+
+
+loginBox.style.display=
+
+'none';
+
+
+app.style.display=
+
+'block';
+
+
+welcome.innerHTML=
+
+'Halo, '+
+
+user+
+
+' 👋';
+
+
+loadData();
+
+}
+
+
+
+// ==========================
+// SIMPAN DATA
+// ==========================
+
+function simpan(){
+
+saveBtn.innerHTML=
+
+'Menyimpan...';
+
+
+saveBtn.disabled=
+
+true;
+
+
+fetch(
+
+API_URL,
+
+{
+
+method:'POST',
+
+body:JSON.stringify({
+
+tanggal:
+
+tanggal.value,
+
+user:
+
+localStorage.user,
+
+jenis:
+
+jenis.value,
+
+kategori:
+
+kategori.value,
+
+keterangan:
+
+keterangan.value,
+
+nominal:
+
+nominal.value
+
+})
+
+}
+
+)
+
+.then(
+
+response=>response.json()
+
+)
+
+.then(data=>{
+
+
+saveBtn.innerHTML=
+
+'Simpan';
+
+
+saveBtn.disabled=
+
+false;
+
+
+toast(
+
+'✓ Data berhasil disimpan'
+
+);
+
+
+// reset input
+
+tanggal.value='';
+
+keterangan.value='';
+
+nominal.value='';
+
+jenis.selectedIndex=0;
+
+kategoriUpdate();
+
+
+// refresh dashboard
+
+loadData();
+
+
+})
+
+.catch(error=>{
+
+console.log(error);
+
+toast(
+
+'❌ Gagal simpan'
+
+);
+
+});
+
+}
+
+
+
+// ==========================
+// LOAD DATA
+// ==========================
+
+function loadData(){
+
+let user=
+
+localStorage.getItem(
+
+'user'
+
+);
+
+
+fetch(
+
+API_URL+
+
+'?action=get'+
+
+'&user='+
+
+encodeURIComponent(
+
+user
+
+)
+
+)
+
+.then(
+
+response=>response.json()
+
+)
+
+.then(data=>{
+
 
 let pemasukan=0;
 
@@ -334,23 +457,35 @@ let html='';
 
 let kategoriRingkasan={};
 
-data.reverse()
 
-.forEach(item=>{
+data.reverse();
+
+
+data.forEach(item=>{
+
 
 total++;
 
+
 let nominal=
+
 Number(
+
 item.nominal
+
 );
 
+
 if(
+
 item.jenis==
+
 'Pemasukan'
+
 ){
 
 pemasukan+=
+
 nominal;
 
 }
@@ -358,26 +493,48 @@ nominal;
 else{
 
 pengeluaran+=
+
 nominal;
 
 }
 
+
+
 kategoriRingkasan[
+
 item.kategori
+
 ]
+
 =
+
 (
+
 kategoriRingkasan[
+
 item.kategori
-]||0
+
+]
+
+||
+
+0
+
 )
+
 +
+
 nominal;
+
+
 
 html+=`
 
 <div class=
-"item ${item.jenis}">
+
+"item ${item.jenis}"
+
+>
 
 <b>
 
@@ -392,43 +549,84 @@ ${item.keterangan}
 <br>
 
 ${rupiah(
+
 nominal
+
 )}
+
+<br>
+
+<small>
+
+${item.tanggal}
+
+</small>
 
 </div>
 
 `;
 
+
+
 });
 
+
+// dashboard
+
 masuk.innerHTML=
+
 rupiah(
+
 pemasukan
+
 );
+
 
 keluar.innerHTML=
+
 rupiah(
+
 pengeluaran
+
 );
+
 
 saldo.innerHTML=
+
 rupiah(
+
 pemasukan-
+
 pengeluaran
+
 );
 
+
 jml.innerHTML=
+
 total;
 
+
+// riwayat
+
 riwayat.innerHTML=
+
 html;
+
+
+// laporan
 
 let kategoriHTML='';
 
+
 for(
+
 let k
+
 in
+
 kategoriRingkasan
+
 ){
 
 kategoriHTML+=`
@@ -440,7 +638,9 @@ ${k}
 :
 
 ${rupiah(
+
 kategoriRingkasan[k]
+
 )}
 
 </p>
@@ -449,57 +649,60 @@ kategoriRingkasan[k]
 
 }
 
+
 kategoriLaporan.innerHTML=
+
 kategoriHTML;
+
 
 })
 
 .catch(error=>{
 
-console.log(
-error
+console.log(error);
+
+toast(
+
+'Gagal memuat data'
+
 );
 
 });
 
 }
 
-// ===================
+
+
+// ==========================
 // LOGOUT
-// ===================
+// ==========================
 
 function logout(){
 
-    let konfirmasi =
-    confirm(
-    "Yakin ingin logout?"
-    );
+if(
 
-    if(!konfirmasi){
-        return;
-    }
+confirm(
 
-    // hapus session login
-    localStorage.removeItem(
-    'user'
-    );
+'Yakin logout?'
 
-    // tampilkan halaman login lagi
-    app.style.display=
-    'none';
+)
 
-    loginBox.style.display=
-    'block';
+){
 
-    // kosongkan input login
-    username.value='';
+localStorage.removeItem(
 
-    password.value='';
+'user'
 
-    toast(
-    '✓ Berhasil logout'
-    );
+);
+
+location.reload();
 
 }
-// otomatis login bila session ada
+
+}
+
+
+
+// otomatis login
+
 showApp();
