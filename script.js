@@ -1,4 +1,4 @@
-const API_URL = 'https://script.google.com/macros/s/AKfycbytsLWncsMU8G__2izyJumeaszT2lZdLem5PnoerswVco4yA4WVT7GO2jAymVJaHonT4A/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbwnIpfMygNCpaYOQJMnfIGUjUtuba0WLNN6iCmKbvj3Sc_vSOtAMV7ad2god2ThlcU9lQ/exec';
 
 const kategoriData = {
 
