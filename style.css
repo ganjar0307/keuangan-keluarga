@@ -51,3 +51,11 @@ background:#7f1d1d;
 .Pemasukan{
 background:#14532d;
 }
+
+.logout-btn{ 
+  background:#dc2626; 
+} 
+
+.logout-btn:hover{ 
+  opacity:.9; 
+}
