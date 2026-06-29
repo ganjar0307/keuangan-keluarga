@@ -448,6 +448,42 @@ error
 
 }
 
+// ===================
+// LOGOUT
+// ===================
 
+function logout(){
+
+    let konfirmasi =
+    confirm(
+    "Yakin ingin logout?"
+    );
+
+    if(!konfirmasi){
+        return;
+    }
+
+    // hapus session login
+    localStorage.removeItem(
+    'user'
+    );
+
+    // tampilkan halaman login lagi
+    app.style.display=
+    'none';
+
+    loginBox.style.display=
+    'block';
+
+    // kosongkan input login
+    username.value='';
+
+    password.value='';
+
+    toast(
+    '✓ Berhasil logout'
+    );
+
+}
 // otomatis login bila session ada
 showApp();
