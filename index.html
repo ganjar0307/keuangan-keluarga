@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keuangan Keluarga</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+<h1>Catatan Pengeluaran Keluarga</h1>
+
+<div id="loginBox">
+<input id="username" placeholder="Username">
+<input id="password" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+</div>
+
+<div id="app" style="display:none">
+<h3 id="welcome"></h3>
+
+<input type="date" id="tanggal">
+<select id="jenis">
+<option>Pengeluaran</option>
+<option>Pemasukan</option>
+</select>
+
+<input id="kategori" placeholder="Kategori">
+<input id="keterangan" placeholder="Keterangan">
+<input id="nominal" placeholder="Nominal">
+<button onclick="simpan()">Simpan</button>
+
+<h2>Riwayat</h2>
+<table id="tbl">
+<thead>
+<tr>
+<th>Tanggal</th><th>User</th><th>Jenis</th><th>Kategori</th><th>Nominal</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+<button onclick="logout()">Logout</button>
+</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
