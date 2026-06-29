@@ -1,22 +1,38 @@
 const API_URL = 'https://script.google.com/macros/s/AKfycbytsLWncsMU8G__2izyJumeaszT2lZdLem5PnoerswVco4yA4WVT7GO2jAymVJaHonT4A/exec';
 
 const kategoriData = {
+
     Pengeluaran: [
+
         '🍔 Makanan',
         '🛒 Belanja',
+        '🏠 Rumah Tangga',
         '🚗 Transportasi',
         '💡 Tagihan',
         '🎓 Pendidikan',
         '💊 Kesehatan',
-        '🎮 Hiburan'
+        '✨ Skincare',
+        '🎮 Hiburan',
+        '💼 Operasional Kerja',
+        '👨‍👩‍👧 Orang Tua',
+        '💸 Hutang',
+        '💰 Saving',
+        '📌 Lainnya'
+
     ],
 
     Pemasukan: [
+
         '💼 Gaji',
         '💰 Bonus',
         '💵 Usaha',
-        '💳 Transfer'
+        '💳 Transfer',
+        '📥 Piutang',
+        '💵 Pengembalian Hutang',
+        '📌 Lainnya'
+
     ]
+
 };
 
 
